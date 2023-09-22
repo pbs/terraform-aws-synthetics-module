@@ -1,4 +1,4 @@
-# PBS TF MOD_TITLE
+# PBS TF Synthetics Module
 
 ## Installation
 
@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-MOD_NAME?ref=x.y.z
+github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -16,20 +16,15 @@ More information can be found on these install methods and more in [the document
 
 ## Usage
 
-<!-- TODO -->
-This should be a basic description of what this module does.
-Fill this out before completing usage of this template.
-<!-- TODO -->
+Creates a basic CloudWatch Synthetics Canary, along with the accoutrement to utilize it effectively.
 
 Integrate this module like so:
 
 ```hcl
-module "MOD_SHORTNAME" {
-  source = "github.com/pbs/terraform-aws-MOD_NAME?ref=x.y.z"
+module "synthetics" {
+  source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
-  <!-- TODO -->
-  Show some examples of valid values for required parameters.
-  <!-- TODO -->
+  zip_file = "path/to/file.zip"
 
   # Tagging Parameters
   organization = var.organization
@@ -40,6 +35,14 @@ module "MOD_SHORTNAME" {
   # Optional Parameters
 }
 ```
+
+Note that either a `zip_file` or a `canary_script_s3_location` must be provided to provide code for the canary to run.
+
+An example showing how to use Terraform to generate a canary can be found in the [basic example](./examples/basic).
+
+Note that this is not advised for most use-cases. `data` resources in Terraform are assumed to have no side effects (like creating a zip file), and you will run into trouble if you use this approach for frequent canary adjustments.
+
+The recommended workaround for this is to use something external to Terraform (like a bash script or [Terragrunt](https://terragrunt.gruntwork.io/)) to handle the zip file creation, and then use Terraform to deploy the canary.
 
 ## Adding This Version of the Module
 
