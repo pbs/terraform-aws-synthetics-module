@@ -1,7 +1,7 @@
 module "role" {
   count = var.execution_role_arn == null ? 1 : 0
 
-  source = "github.com/pbs/terraform-aws-iam-role-module?ref=0.1.17"
+  source = "github.com/pbs/terraform-aws-iam-role-module?ref=0.1.18"
 
   policy_json = jsonencode({
     "Version" : "2012-10-17",
