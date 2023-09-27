@@ -77,17 +77,10 @@ variable "run_config" {
 variable "canary_script_s3_location" {
   description = "Location in Amazon S3 where Synthetics stores the canary script for a canary. Conflicts with `zip_file`."
   type = object({
-    bucket  = optional(string)
-    key     = optional(string)
+    bucket  = string
+    key     = string
     version = optional(string)
   })
-  default = {}
-}
-
-variable "zip_file" {
-  description = "ZIP file that contains the script, if you input your canary script directly into the canary instead of referring to an S3 location. It can be up to 225KB. Conflicts with `canary_script_s3_location`."
-  type        = string
-  default     = null
 }
 
 variable "start_canary" {
