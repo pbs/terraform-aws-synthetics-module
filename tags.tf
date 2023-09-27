@@ -32,6 +32,14 @@ variable "organization" {
     condition     = can(regex("[a-z\\-]+", var.organization))
     error_message = "The organization variable violates approved regex."
   }
+variable "owner" {
+  description = "The group within PBS that is accountable for the project using this module."
+  type        = string
+  validation {
+    condition     = contains(["videoapps", "identity", "ap", "webservices", "vidtech", "core", "consumer"], var.owner)
+    error_message = "The organization variable violates approved regex."
+  }
+  default = "ap"
 }
 
 variable "tags" {
