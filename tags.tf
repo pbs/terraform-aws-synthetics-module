@@ -14,6 +14,7 @@ variable "product" {
     condition     = can(regex("[a-z\\-]+", var.product))
     error_message = "The product variable violates approved regex."
   }
+  default     = "pbsorg"
 }
 
 variable "repo" {
@@ -23,6 +24,7 @@ variable "repo" {
     condition     = can(regex("(?:git|ssh|https?|git@[-\\w.]+):(\\/\\/)?(.*?)(\\.git)(\\/?|\\#[-\\d\\w._]+?)$", var.repo))
     error_message = "The repo variable violates approved regex."
   }
+  default = "git@github.com:pbs/pbsorg"
 }
 
 variable "organization" {
@@ -32,6 +34,9 @@ variable "organization" {
     condition     = can(regex("[a-z\\-]+", var.organization))
     error_message = "The organization variable violates approved regex."
   }
+  default = "pbs"
+}
+
 variable "owner" {
   description = "The group within PBS that is accountable for the project using this module."
   type        = string
