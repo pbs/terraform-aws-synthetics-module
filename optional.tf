@@ -1,7 +1,6 @@
 variable "name" {
   description = "Name of the synthetics module. If null, will default to product."
   type        = string
-  default     = null
 }
 
 variable "schedule" {
