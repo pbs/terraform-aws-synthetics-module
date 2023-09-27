@@ -40,7 +40,7 @@ variable "handler" {
 variable "delete_lambda" {
   description = "Specifies whether to also delete the Lambda functions and layers used by this canary."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "vpc_config" {
