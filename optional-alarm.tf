@@ -12,6 +12,7 @@ variable "alarm_config" {
     alarm_actions             = optional(list(string), [])
     ok_actions                = optional(list(string), [])
     insufficient_data_actions = optional(list(string), [])
+    treat_missing_data        = optional(string, "missing")
     description               = optional(string)
   })
   default = {
@@ -26,6 +27,7 @@ variable "alarm_config" {
     alarm_actions             = []
     ok_actions                = []
     insufficient_data_actions = []
+    treat_missing_data        = "missing"
     description               = null
   }
 }
