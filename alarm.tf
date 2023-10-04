@@ -11,6 +11,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
   alarm_actions             = var.alarm_config.alarm_actions
   ok_actions                = var.alarm_config.ok_actions
   insufficient_data_actions = var.alarm_config.insufficient_data_actions
+  treat_missing_data        = var.alarm_config.treat_missing_data
   alarm_description         = var.alarm_config.description != null ? var.alarm_config.description : "Alarm for ${local.name} Canary"
   dimensions = {
     CanaryName = local.name
