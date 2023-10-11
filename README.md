@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-synthetics-module?ref=1.2.2
+github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -22,7 +22,7 @@ Integrate this module like so:
 
 ```hcl
 module "synthetics" {
-  source = "github.com/pbs/terraform-aws-synthetics-module?ref=1.2.2"
+  source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
   zip_file = "path/to/file.zip"
 
@@ -48,7 +48,7 @@ The recommended workaround for this is to use something external to Terraform (l
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`1.2.2`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -103,6 +103,7 @@ Below is automatically generated documentation on this Terraform module using [t
 | <a name="input_canary_script_s3_location"></a> [canary\_script\_s3\_location](#input\_canary\_script\_s3\_location) | Location in Amazon S3 where Synthetics stores the canary script for a canary. Conflicts with `zip_file`. | <pre>object({<br>    bucket  = optional(string)<br>    key     = optional(string)<br>    version = optional(string)<br>  })</pre> | `{}` | no |
 | <a name="input_delete_lambda"></a> [delete\_lambda](#input\_delete\_lambda) | Specifies whether to also delete the Lambda functions and layers used by this canary. | `bool` | `false` | no |
 | <a name="input_execution_role_arn"></a> [execution\_role\_arn](#input\_execution\_role\_arn) | ARN of the IAM role to be used to run the canary. | `string` | `null` | no |
+| <a name="input_execution_role_name"></a> [execution\_role\_name](#input\_execution\_role\_name) | Name of the execution role created by this module, if one is created. If null, will default to name. | `string` | `null` | no |
 | <a name="input_failure_retention_period"></a> [failure\_retention\_period](#input\_failure\_retention\_period) | Number of days to retain data about failed runs of this canary. | `number` | `31` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Specifies whether to force destroy the bucket containing the canary artifacts. This is required when the bucket contains objects. The default value is `false`. | `bool` | `false` | no |
 | <a name="input_handler"></a> [handler](#input\_handler) | Entry point to use for the source code when running the canary. This value must end with the string `.handler`. | `string` | `"canary.handler"` | no |
@@ -110,6 +111,7 @@ Below is automatically generated documentation on this Terraform module using [t
 | <a name="input_run_config"></a> [run\_config](#input\_run\_config) | Configuration block for individual canary runs. | <pre>object({<br>    timeout_in_seconds    = optional(number)<br>    memory_in_mb          = optional(number)<br>    active_tracing        = optional(bool)<br>    environment_variables = optional(map(string))<br>  })</pre> | `null` | no |
 | <a name="input_runtime_version"></a> [runtime\_version](#input\_runtime\_version) | Specifies the runtime version to use for the canary. For a list of valid runtime versions, see Canary Runtime Versions. | `string` | `"syn-nodejs-puppeteer-6.0"` | no |
 | <a name="input_schedule"></a> [schedule](#input\_schedule) | Schedule for how often the canary is to run and when these test runs are to stop. | <pre>object({<br>    expression          = string<br>    duration_in_seconds = optional(number)<br>  })</pre> | <pre>{<br>  "expression": "rate(5 minutes)"<br>}</pre> | no |
+| <a name="input_snapshot_bucket_name"></a> [snapshot\_bucket\_name](#input\_snapshot\_bucket\_name) | Name of the bucket to store snapshots in. If null, will default to name. | `string` | `null` | no |
 | <a name="input_start_canary"></a> [start\_canary](#input\_start\_canary) | Specifies whether this canary is to run after it is created. | `bool` | `true` | no |
 | <a name="input_success_retention_period"></a> [success\_retention\_period](#input\_success\_retention\_period) | Number of days to retain data about successful runs of this canary. The valid range is 1 to 455 days. | `number` | `31` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Extra tags | `map(string)` | `{}` | no |

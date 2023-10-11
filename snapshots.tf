@@ -3,6 +3,8 @@
 module "s3" {
   source = "github.com/pbs/terraform-aws-s3-module?ref=3.0.8"
 
+  name = local.snapshot_bucket_name
+
   force_destroy = var.force_destroy
 
   # Tagging Parameters
