@@ -5,6 +5,9 @@ locals {
 
   artifact_s3_location = "s3://${module.s3.name}/"
 
+  snapshot_bucket_name = var.snapshot_bucket_name != null ? var.snapshot_bucket_name : local.name
+  execution_role_name  = var.execution_role_name != null ? var.execution_role_name : local.name
+
   creator = "terraform"
 
   defaulted_tags = merge(

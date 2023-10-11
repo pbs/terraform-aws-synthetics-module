@@ -3,6 +3,8 @@ module "role" {
 
   source = "github.com/pbs/terraform-aws-iam-role-module?ref=0.1.18"
 
+  name = local.execution_role_name
+
   policy_json = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [

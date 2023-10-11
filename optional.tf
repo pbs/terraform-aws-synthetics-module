@@ -124,3 +124,15 @@ variable "force_destroy" {
   type        = bool
   default     = false
 }
+
+variable "snapshot_bucket_name" {
+  description = "Name of the bucket to store snapshots in. If null, will default to name."
+  type        = string
+  default     = null
+}
+
+variable "execution_role_name" {
+  description = "Name of the execution role created by this module, if one is created. If null, will default to name."
+  type        = string
+  default     = null
+}
