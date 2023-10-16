@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-synthetics-module?ref=2.0.4
+github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -22,7 +22,7 @@ Integrate this module like so:
 
 ```hcl
 module "synthetics" {
-  source = "github.com/pbs/terraform-aws-synthetics-module?ref=2.0.4"
+  source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
   zip_file = "path/to/file.zip"
 
@@ -48,7 +48,7 @@ The recommended workaround for this is to use something external to Terraform (l
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`2.0.4`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -78,7 +78,7 @@ Below is automatically generated documentation on this Terraform module using [t
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_role"></a> [role](#module\_role) | github.com/pbs/terraform-aws-iam-role-module | 0.1.21 |
-| <a name="module_s3"></a> [s3](#module\_s3) | github.com/pbs/terraform-aws-s3-module | 4.0.3 |
+| <a name="module_s3"></a> [s3](#module\_s3) | github.com/pbs/terraform-aws-s3-module | 4.0.5 |
 
 ## Resources
 
