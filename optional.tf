@@ -64,6 +64,22 @@ variable "failure_retention_period" {
   }
 }
 
+variable "cumulative_policy" {
+  description = "A boolean indicating whether to add the user-provided policy to the default policy."
+  type        = bool
+  default     = false
+}
+
+variable "role_policy" {
+  description = "The IAM role policy to provide the canary."
+  type        = string
+  default     = null
+  validation {
+    condition     = var.role_policy != null ? can(jsondecode(var.role_policy)) : true
+    error_message = "Failed to decode role_policy json"
+  }
+}
+
 variable "run_config" {
   description = "Configuration block for individual canary runs."
   type = object({
