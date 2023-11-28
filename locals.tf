@@ -1,7 +1,7 @@
 locals {
   name = var.name != null ? var.name : var.product
 
-  # Snapshot Bucket
+  # Snapshot Bucket and CloudWatch permissions
   default_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
@@ -58,6 +58,8 @@ locals {
     ]
   })
 
+  # Merge the default policy with the user provided policy if cumulative_policy is true, otherwise overwrite it with the user provided policy
+  # If the user provided policy is null, use the default policy
   aggregate_policy = var.role_policy != null ? (var.cumulative_policy ? merge(local.default_policy, var.role_policy) : var.role_policy) : local.default_policy
 
   execution_role_arn = var.execution_role_arn != null ? var.execution_role_arn : module.role[0].arn
