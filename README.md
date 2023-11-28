@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-synthetics-module?ref=2.0.14
+github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -22,7 +22,7 @@ Integrate this module like so:
 
 ```hcl
 module "synthetics" {
-  source = "github.com/pbs/terraform-aws-synthetics-module?ref=2.0.14"
+  source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
   zip_file = "path/to/file.zip"
 
@@ -48,7 +48,7 @@ The recommended workaround for this is to use something external to Terraform (l
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`2.0.14`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -101,6 +101,7 @@ Below is automatically generated documentation on this Terraform module using [t
 | <a name="input_alarm_config"></a> [alarm\_config](#input\_alarm\_config) | Configurations for the alarm | <pre>object({<br>    comparison_operator       = optional(string, "LessThanThreshold")<br>    period                    = optional(number, 300)<br>    evaluation_periods        = optional(number, 1)<br>    metric_name               = optional(string, "SuccessPercent")<br>    namespace                 = optional(string, "CloudWatchSynthetics")<br>    statistic                 = optional(string, "Sum")<br>    datapoints_to_alarm       = optional(number, 1)<br>    threshold                 = optional(string, "90")<br>    alarm_actions             = optional(list(string), [])<br>    ok_actions                = optional(list(string), [])<br>    insufficient_data_actions = optional(list(string), [])<br>    treat_missing_data        = optional(string, "missing")<br>    description               = optional(string)<br>  })</pre> | <pre>{<br>  "alarm_actions": [],<br>  "comparison_operator": "LessThanThreshold",<br>  "datapoints_to_alarm": 1,<br>  "description": null,<br>  "evaluation_periods": 1,<br>  "insufficient_data_actions": [],<br>  "metric_name": "SuccessPercent",<br>  "namespace": "CloudWatchSynthetics",<br>  "ok_actions": [],<br>  "period": 300,<br>  "statistic": "Sum",<br>  "threshold": "90",<br>  "treat_missing_data": "missing"<br>}</pre> | no |
 | <a name="input_artifact_config"></a> [artifact\_config](#input\_artifact\_config) | Configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3. | <pre>object({<br>    s3_encryption = optional(object({<br>      encryption_mode = optional(string)<br>      kms_key_arn     = optional(string)<br>    }))<br>  })</pre> | `null` | no |
 | <a name="input_canary_script_s3_location"></a> [canary\_script\_s3\_location](#input\_canary\_script\_s3\_location) | Location in Amazon S3 where Synthetics stores the canary script for a canary. Conflicts with `zip_file`. | <pre>object({<br>    bucket  = optional(string)<br>    key     = optional(string)<br>    version = optional(string)<br>  })</pre> | `{}` | no |
+| <a name="input_cumulative_policy"></a> [cumulative\_policy](#input\_cumulative\_policy) | A boolean indicating whether to add the user-provided policy to the default policy. | `bool` | `false` | no |
 | <a name="input_delete_lambda"></a> [delete\_lambda](#input\_delete\_lambda) | Specifies whether to also delete the Lambda functions and layers used by this canary. | `bool` | `false` | no |
 | <a name="input_execution_role_arn"></a> [execution\_role\_arn](#input\_execution\_role\_arn) | ARN of the IAM role to be used to run the canary. | `string` | `null` | no |
 | <a name="input_execution_role_name"></a> [execution\_role\_name](#input\_execution\_role\_name) | Name of the execution role created by this module, if one is created. If null, will default to name. | `string` | `null` | no |
@@ -108,6 +109,7 @@ Below is automatically generated documentation on this Terraform module using [t
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Specifies whether to force destroy the bucket containing the canary artifacts. This is required when the bucket contains objects. The default value is `false`. | `bool` | `false` | no |
 | <a name="input_handler"></a> [handler](#input\_handler) | Entry point to use for the source code when running the canary. This value must end with the string `.handler`. | `string` | `"canary.handler"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the synthetics module. If null, will default to product. | `string` | `null` | no |
+| <a name="input_role_policy"></a> [role\_policy](#input\_role\_policy) | The IAM role policy to provide the canary. | `string` | `null` | no |
 | <a name="input_run_config"></a> [run\_config](#input\_run\_config) | Configuration block for individual canary runs. | <pre>object({<br>    timeout_in_seconds    = optional(number)<br>    memory_in_mb          = optional(number)<br>    active_tracing        = optional(bool)<br>    environment_variables = optional(map(string))<br>  })</pre> | `null` | no |
 | <a name="input_runtime_version"></a> [runtime\_version](#input\_runtime\_version) | Specifies the runtime version to use for the canary. For a list of valid runtime versions, see Canary Runtime Versions. | `string` | `"syn-nodejs-puppeteer-6.0"` | no |
 | <a name="input_schedule"></a> [schedule](#input\_schedule) | Schedule for how often the canary is to run and when these test runs are to stop. | <pre>object({<br>    expression          = string<br>    duration_in_seconds = optional(number)<br>  })</pre> | <pre>{<br>  "expression": "rate(5 minutes)"<br>}</pre> | no |

@@ -33,4 +33,7 @@ module "synthetics" {
   environment  = var.environment
   product      = var.product
   repo         = var.repo
+  role_policy = jsonencode(
+    { "Statement" : [{ "Effect" : "Allow", "Action" : ["ssm:GetParameters"], "Resource" : "*" }] }
+  )
 }
