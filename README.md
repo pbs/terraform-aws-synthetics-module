@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-synthetics-module?ref=2.0.17
+github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -22,7 +22,7 @@ Integrate this module like so:
 
 ```hcl
 module "synthetics" {
-  source = "github.com/pbs/terraform-aws-synthetics-module?ref=2.0.17"
+  source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
   zip_file = "path/to/file.zip"
 
@@ -48,7 +48,7 @@ The recommended workaround for this is to use something external to Terraform (l
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`2.0.17`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -77,7 +77,7 @@ Below is automatically generated documentation on this Terraform module using [t
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_role"></a> [role](#module\_role) | github.com/pbs/terraform-aws-iam-role-module | 0.2.2 |
+| <a name="module_role"></a> [role](#module\_role) | github.com/pbs/terraform-aws-iam-role-module.git | 0.2.4 |
 | <a name="module_s3"></a> [s3](#module\_s3) | github.com/pbs/terraform-aws-s3-module | 4.0.13 |
 
 ## Resources
@@ -122,10 +122,11 @@ Below is automatically generated documentation on this Terraform module using [t
 
 | Name | Description |
 |------|-------------|
-| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the canary. |
-| <a name="output_engine_arn"></a> [engine\_arn](#output\_engine\_arn) | ARN of the Lambda function that is used as your canary's engine. |
-| <a name="output_id"></a> [id](#output\_id) | Name of the canary. |
-| <a name="output_name"></a> [name](#output\_name) | Name of the canary. |
-| <a name="output_source_location_arn"></a> [source\_location\_arn](#output\_source\_location\_arn) | ARN of the Lambda layer where Synthetics stores the canary script code. |
-| <a name="output_status"></a> [status](#output\_status) | Status of the canary. |
-| <a name="output_timeline"></a> [timeline](#output\_timeline) | Timeline of the canary. |
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the canary |
+| <a name="output_engine_arn"></a> [engine\_arn](#output\_engine\_arn) | ARN of the Lambda function that is used as your canary's engine |
+| <a name="output_execution_role_name"></a> [execution\_role\_name](#output\_execution\_role\_name) | Name of the IAM role used to run the canary |
+| <a name="output_id"></a> [id](#output\_id) | Name of the canary |
+| <a name="output_name"></a> [name](#output\_name) | Name of the canary |
+| <a name="output_source_location_arn"></a> [source\_location\_arn](#output\_source\_location\_arn) | ARN of the Lambda layer where Synthetics stores the canary script code |
+| <a name="output_status"></a> [status](#output\_status) | Status of the canary |
+| <a name="output_timeline"></a> [timeline](#output\_timeline) | Timeline of the canary |
