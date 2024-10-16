@@ -22,7 +22,6 @@ Integrate this module like so:
 
 ```hcl
 module "synthetics" {
-
   source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
   zip_file = "path/to/file.zip"
@@ -50,7 +49,6 @@ The recommended workaround for this is to use something external to Terraform (l
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
 `x.y.z`
-
 
 Note, however that subtrees can be altered as desired within repositories.
 
