@@ -1,6 +1,7 @@
 variable "alarm_config" {
   description = "Configurations for the alarm"
   type = object({
+    actions_enabled           = optional(bool, true)
     comparison_operator       = optional(string, "LessThanThreshold")
     period                    = optional(number, 300)
     evaluation_periods        = optional(number, 1)
@@ -16,6 +17,7 @@ variable "alarm_config" {
     description               = optional(string)
   })
   default = {
+    actions_enabled           = true
     comparison_operator       = "LessThanThreshold"
     period                    = 300
     evaluation_periods        = 1

@@ -1,5 +1,6 @@
 resource "aws_cloudwatch_metric_alarm" "alarm" {
   alarm_name                = "canary-${local.name}"
+  actions_enabled           = var.alarm_config.actions_enabled
   comparison_operator       = var.alarm_config.comparison_operator
   period                    = var.alarm_config.period
   evaluation_periods        = var.alarm_config.evaluation_periods

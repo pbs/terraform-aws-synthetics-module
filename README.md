@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-synthetics-module?ref=2.0.21
+github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -22,7 +22,7 @@ Integrate this module like so:
 
 ```hcl
 module "synthetics" {
-  source = "github.com/pbs/terraform-aws-synthetics-module?ref=2.0.21"
+  source = "github.com/pbs/terraform-aws-synthetics-module?ref=x.y.z"
 
   zip_file = "path/to/file.zip"
 
@@ -48,7 +48,7 @@ The recommended workaround for this is to use something external to Terraform (l
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`2.0.21`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -98,7 +98,7 @@ Below is automatically generated documentation on this Terraform module using [t
 | <a name="input_organization"></a> [organization](#input\_organization) | Organization using this module. Used to prefix tags so that they are easily identified as being from your organization | `string` | n/a | yes |
 | <a name="input_product"></a> [product](#input\_product) | Tag used to group resources according to product | `string` | n/a | yes |
 | <a name="input_repo"></a> [repo](#input\_repo) | Tag used to point to the repo using this module | `string` | n/a | yes |
-| <a name="input_alarm_config"></a> [alarm\_config](#input\_alarm\_config) | Configurations for the alarm | <pre>object({<br>    comparison_operator       = optional(string, "LessThanThreshold")<br>    period                    = optional(number, 300)<br>    evaluation_periods        = optional(number, 1)<br>    metric_name               = optional(string, "SuccessPercent")<br>    namespace                 = optional(string, "CloudWatchSynthetics")<br>    statistic                 = optional(string, "Sum")<br>    datapoints_to_alarm       = optional(number, 1)<br>    threshold                 = optional(string, "90")<br>    alarm_actions             = optional(list(string), [])<br>    ok_actions                = optional(list(string), [])<br>    insufficient_data_actions = optional(list(string), [])<br>    treat_missing_data        = optional(string, "missing")<br>    description               = optional(string)<br>  })</pre> | <pre>{<br>  "alarm_actions": [],<br>  "comparison_operator": "LessThanThreshold",<br>  "datapoints_to_alarm": 1,<br>  "description": null,<br>  "evaluation_periods": 1,<br>  "insufficient_data_actions": [],<br>  "metric_name": "SuccessPercent",<br>  "namespace": "CloudWatchSynthetics",<br>  "ok_actions": [],<br>  "period": 300,<br>  "statistic": "Sum",<br>  "threshold": "90",<br>  "treat_missing_data": "missing"<br>}</pre> | no |
+| <a name="input_alarm_config"></a> [alarm\_config](#input\_alarm\_config) | Configurations for the alarm | <pre>object({<br>    actions_enabled           = optional(bool, true)<br>    comparison_operator       = optional(string, "LessThanThreshold")<br>    period                    = optional(number, 300)<br>    evaluation_periods        = optional(number, 1)<br>    metric_name               = optional(string, "SuccessPercent")<br>    namespace                 = optional(string, "CloudWatchSynthetics")<br>    statistic                 = optional(string, "Sum")<br>    datapoints_to_alarm       = optional(number, 1)<br>    threshold                 = optional(string, "90")<br>    alarm_actions             = optional(list(string), [])<br>    ok_actions                = optional(list(string), [])<br>    insufficient_data_actions = optional(list(string), [])<br>    treat_missing_data        = optional(string, "missing")<br>    description               = optional(string)<br>  })</pre> | <pre>{<br>  "actions_enabled": true,<br>  "alarm_actions": [],<br>  "comparison_operator": "LessThanThreshold",<br>  "datapoints_to_alarm": 1,<br>  "description": null,<br>  "evaluation_periods": 1,<br>  "insufficient_data_actions": [],<br>  "metric_name": "SuccessPercent",<br>  "namespace": "CloudWatchSynthetics",<br>  "ok_actions": [],<br>  "period": 300,<br>  "statistic": "Sum",<br>  "threshold": "90",<br>  "treat_missing_data": "missing"<br>}</pre> | no |
 | <a name="input_artifact_config"></a> [artifact\_config](#input\_artifact\_config) | Configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3. | <pre>object({<br>    s3_encryption = optional(object({<br>      encryption_mode = optional(string)<br>      kms_key_arn     = optional(string)<br>    }))<br>  })</pre> | `null` | no |
 | <a name="input_canary_script_s3_location"></a> [canary\_script\_s3\_location](#input\_canary\_script\_s3\_location) | Location in Amazon S3 where Synthetics stores the canary script for a canary. Conflicts with `zip_file`. | <pre>object({<br>    bucket  = optional(string)<br>    key     = optional(string)<br>    version = optional(string)<br>  })</pre> | `{}` | no |
 | <a name="input_delete_lambda"></a> [delete\_lambda](#input\_delete\_lambda) | Specifies whether to also delete the Lambda functions and layers used by this canary. | `bool` | `false` | no |
