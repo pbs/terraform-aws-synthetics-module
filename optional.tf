@@ -136,3 +136,9 @@ variable "execution_role_name" {
   type        = string
   default     = null
 }
+
+variable "policy_json" {
+  description = "Policy JSON. If null, default policy granting S3, logging, and XRay will be attached"
+  type        = string
+  default     = null
+}

@@ -5,7 +5,7 @@ module "role" {
 
   name = local.execution_role_name
 
-  policy_json = jsonencode({
+  policy_json = var.policy_json != null ? var.policy_json : jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
